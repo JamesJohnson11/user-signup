@@ -1,0 +1,59 @@
+<!doctype HTML>
+<html>
+    <head>
+        <title>User Signup</title>
+        <style> .error { color: red; }</style>
+    </head>
+    <body>
+        <h1>Signup</h1>
+        <form action='/' method='POST'>
+            <table>
+                <tr>
+                    <td>
+                        Username:
+                    </td>
+                    <td>
+                        <input type='text' name='username' value="{{ request.form['username'] }}"/>
+                    </td>
+                    <td class='error'>
+                        {{username_error}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Password:
+                    </td>
+                    <td>
+                        <input type='password' name='password'/>
+                    </td>
+                    <td class='error'>
+                        {{password_error}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Verify Password:
+                    </td>
+                    <td>
+                        <input type='password' name='verify_pass'/>
+                    </td>
+                    <td class='error'>
+                        {{pwv_error}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email (optional):
+                    </td>
+                    <td>
+                        <input type='text' name='email' value="{{ request.form['email'] }}"/>
+                    </td>
+                    <td class='error'>
+                        {{email_error}}
+                    </td>
+                </tr>
+            </table>
+            <input type='submit' value='Submit'/>
+        </form>
+    </body>
+</html>
