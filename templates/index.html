@@ -6,17 +6,17 @@
     </head>
     <body>
         <h1>Signup</h1>
-        <form action='/' method='POST'>
+        <form action='/welcome' method='POST'>
             <table>
                 <tr>
                     <td>
                         Username:
                     </td>
                     <td>
-                        <input type='text' name='username' value="{{ request.form['username'] }}"/>
+                        <input type='text' name='username' value='{{ request.form['username'] }}'/>
                     </td>
                     <td class='error'>
-                        {{username_error}}
+                        {{ username_error }}
                     </td>
                 </tr>
                 <tr>
@@ -27,7 +27,7 @@
                         <input type='password' name='password'/>
                     </td>
                     <td class='error'>
-                        {{password_error}}
+                        {{ password_error }}
                     </td>
                 </tr>
                 <tr>
@@ -38,7 +38,7 @@
                         <input type='password' name='verify_pass'/>
                     </td>
                     <td class='error'>
-                        {{pwv_error}}
+                        {{ pwv_error }}
                     </td>
                 </tr>
                 <tr>
@@ -46,10 +46,10 @@
                         Email (optional):
                     </td>
                     <td>
-                        <input type='text' name='email' value="{{ request.form['email'] }}"/>
+                        <input type='text' name='email' value='{{ request.form['email'] }}' />
                     </td>
                     <td class='error'>
-                        {{email_error}}
+                        {{ email_error }}
                     </td>
                 </tr>
             </table>

@@ -11,7 +11,11 @@ def is_empty(text):
     else:
         return False
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/welcome', methods=['POST'])
 def display_errors():
     if request.method == 'POST':
         username = request.form['username']
@@ -30,7 +34,7 @@ def display_errors():
             if ' ' in username:
                 username_error = "Username cannot contain space characters."
             if len(username) > 20 or len(username) < 3:
-                username_error = "Username must be 3-20 characters long."
+                username_error = "Username must be 3-20 characters in length."
             
 
         if is_empty(password) == True:
@@ -38,7 +42,7 @@ def display_errors():
 
         else:
             if len(password) > 20 or len(password) < 3:
-                password_error = "Password must be 3-20 characters long."
+                password_error = "Password must be 3-20 characters in length."
                 password = ''
 
         if password != pwv:
@@ -47,29 +51,20 @@ def display_errors():
         
         if is_empty(email) == False: 
             if len(email) > 20 or len(email) < 3:
-                email_error = "Please enter a valid email address."
-            if '@' not in email or '.' not in email:
-                email_error = "Please enter a valid email address."
-            if ' ' in email:
-                email_error = "Please enter a valid email address."
+                email_error = "Email must be 3-20 characters in length."
+            else:
+                if '@' not in email or '.' not in email:
+                    email_error = "Please enter a valid email address."
+                if ' ' in email:
+                    email_error = "Email cannot contain space characters."
 
 
             
 
         if not username_error and not password_error and not pwv_error and not email_error:
-            return redirect('/welcome')
+            return render_template('welcome.html', username=username)
         else:
             return render_template('index.html', username_error=username_error, password_error=password_error, pwv_error=pwv_error, email_error=email_error)
 
-    
-    else:
-        return render_template('index.html')
-
-
-
-@app.route('/welcome', methods=['POST'])
-def welcome():
-    username = request.form['username']
-    return render_template('welcome.html', username=username)
 
 app.run()
