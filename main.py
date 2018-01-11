@@ -5,15 +5,19 @@ import os
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
+
+
 def is_empty(text):
     if text == "":
         return True
     else:
         return False
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/welcome', methods=['POST'])
 def display_errors():
